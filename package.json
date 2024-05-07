@@ -12,11 +12,13 @@
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.2.2",
     "@types/node": "^20.12.10",
+    "prisma": "^5.13.0",
     "tsup": "^8.0.2",
     "tsx": "^4.9.3",
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@prisma/client": "^5.13.0",
     "fastify": "^4.26.2"
   }
 }
