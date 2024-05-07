@@ -6,6 +6,16 @@ import { randomUUID } from 'node:crypto'
 export class InMemoryOrgsRepository implements OrgsRepository {
   private items: Org[] = []
 
+  async findById(id: string) {
+    const org = this.items.find((item) => item.id === id)
+
+    if (!org) {
+      return null
+    }
+
+    return org
+  }
+
   async findByEmail(email: string) {
     const org = this.items.find((item) => item.email === email)
 
