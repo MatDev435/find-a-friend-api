@@ -14,9 +14,9 @@ datasource db {
 }
 
 model Org {
-  id            String  @id @default(uuid())
+  id            String   @id @default(uuid())
   name          String
-  email         String  @unique
+  email         String   @unique
   author_name   String
   password_hash String
   whatsapp      String
@@ -26,7 +26,9 @@ model Org {
   state         String
   latitude      Decimal
   longitude     Decimal
-  Pet           Pet[]
+  created_at    DateTime @default(now())
+
+  pet Pet[]
 
   @@map("orgs")
 }
