@@ -13,7 +13,7 @@ let sut: CreatePetUseCase
 
 describe('Authenticate Org Use Case', () => {
   beforeEach(async () => {
-    petsRepository = new InMemoryPetsRepository()
+    petsRepository = new InMemoryPetsRepository(new InMemoryOrgsRepository())
     orgsRepository = new InMemoryOrgsRepository()
     sut = new CreatePetUseCase(petsRepository, orgsRepository)
 

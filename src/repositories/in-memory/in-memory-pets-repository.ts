@@ -8,6 +8,16 @@ export class InMemoryPetsRepository implements PetsRepository {
 
   constructor(private orgsRepository: InMemoryOrgsRepository) {}
 
+  async findById(id: string) {
+    const pet = this.items.find((item) => item.id === id)
+
+    if (!pet) {
+      return null
+    }
+
+    return pet
+  }
+
   async findMany(params: FindManyParams) {
     const orgsInCity = await this.orgsRepository.findManyByCity(params.city)
 
@@ -32,7 +42,7 @@ export class InMemoryPetsRepository implements PetsRepository {
 
   async create(data: Prisma.PetUncheckedCreateInput) {
     const pet = {
-      id: randomUUID(),
+      id: data.id ?? randomUUID(),
       name: data.name,
       about: data.about,
       size: data.size,
