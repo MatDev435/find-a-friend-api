@@ -28,7 +28,7 @@ describe('Authenticate Org Use Case', () => {
     })
   })
 
-  it('should be abel to authenticate', async () => {
+  it('should be able to authenticate', async () => {
     const { org } = await sut.execute({
       email: 'johndoe@example.com',
       password: '123456',
@@ -37,7 +37,7 @@ describe('Authenticate Org Use Case', () => {
     expect(org.id).toEqual(expect.any(String))
   })
 
-  it('should not be abel to authenticate with wrong email', async () => {
+  it('should not be able to authenticate with wrong email', async () => {
     await expect(() =>
       sut.execute({
         email: 'worng@example.com',
@@ -46,7 +46,7 @@ describe('Authenticate Org Use Case', () => {
     ).rejects.toBeInstanceOf(InvalidCredentialsError)
   })
 
-  it('should not be abel to authenticate with wrong password', async () => {
+  it('should not be able to authenticate with wrong password', async () => {
     await expect(() =>
       sut.execute({
         email: 'johndoe@example.com',
