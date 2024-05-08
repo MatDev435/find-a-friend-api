@@ -4,7 +4,7 @@ import request from 'supertest'
 import { createAndAuthenticateOrg } from '../../../utils/tests/create-and-authenticate-org'
 import { prisma } from '../../../lib/prisma'
 
-describe('Fetch Pets E2E', () => {
+describe('Get Pet E2E', () => {
   beforeAll(async () => {
     await app.ready()
   })
@@ -13,12 +13,12 @@ describe('Fetch Pets E2E', () => {
     await app.close()
   })
 
-  it('should be able to fetch pets', async () => {
+  it('should be able to get pet details', async () => {
     await createAndAuthenticateOrg(app)
 
     const org = await prisma.org.findFirstOrThrow()
 
-    await prisma.pet.create({
+    const pet = await prisma.pet.create({
       data: {
         name: 'Dog',
         about: 'Dog',
@@ -30,21 +30,9 @@ describe('Fetch Pets E2E', () => {
       },
     })
 
-    const response = await request(app.server)
-      .get('/pets')
-      .query({
-        city: 'São Paulo',
-        page: 1,
-        size: 'small',
-        energyLevel: 'high',
-        dependenceLevel: 'medium',
-        environment: 'big',
-      })
-      .send()
+    const response = await request(app.server).get(`/pets/${pet.id}`).send()
 
     expect(response.statusCode).toEqual(200)
-    expect(response.body.pets).toEqual([
-      expect.objectContaining({ name: 'Dog' }),
-    ])
+    expect(response.body.pet).toEqual(expect.objectContaining({ name: 'Dog' }))
   })
 })

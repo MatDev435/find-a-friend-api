@@ -3,11 +3,8 @@ import { z } from 'zod'
 import { makeFetchPetsUseCase } from '../../../use-cases/factories/make-fetch-pets-use-case'
 
 export async function fetchPets(request: FastifyRequest, reply: FastifyReply) {
-  const fetchPetsParamsSchema = z.object({
-    city: z.string(),
-  })
-
   const fetchPetsQueryParams = z.object({
+    city: z.string(),
     page: z.coerce.number().default(1),
     size: z.string().nullable(),
     energyLevel: z.string().nullable(),
@@ -15,9 +12,7 @@ export async function fetchPets(request: FastifyRequest, reply: FastifyReply) {
     environment: z.string().nullable(),
   })
 
-  const { city } = fetchPetsParamsSchema.parse(request.params)
-
-  const { page, size, energyLevel, dependenceLevel, environment } =
+  const { city, page, size, energyLevel, dependenceLevel, environment } =
     fetchPetsQueryParams.parse(request.query)
 
   const fetchPetsUseCase = makeFetchPetsUseCase()
