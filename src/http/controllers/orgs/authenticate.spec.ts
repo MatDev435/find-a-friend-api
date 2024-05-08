@@ -11,7 +11,7 @@ describe('Authenticate Org E2E', () => {
     await app.close()
   })
 
-  it('should be able to register', async () => {
+  it('should be able to authenticate', async () => {
     await request(app.server).post('/orgs').send({
       name: 'TypeScript Org',
       email: 'johndoe@example.com',
