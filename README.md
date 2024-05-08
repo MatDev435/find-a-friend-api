@@ -1,4 +1,4 @@
-### Regras da aplicação
+## Regras da aplicação
 
 - [x] Deve ser possível cadastrar um pet
 - [x] Deve ser possível listar todos os pets disponíveis para adoção em uma cidade
@@ -7,7 +7,7 @@
 - [x] Deve ser possível se cadastrar como uma ORG
 - [x] Deve ser possível realizar login como uma ORG
 
-### Regras de negócio
+## Regras de negócio
 
 - [x] Para listar os pets, obrigatoriamente precisamos informar a cidade
 - [x] Uma ORG precisa ter um endereço e um número de WhatsApp
